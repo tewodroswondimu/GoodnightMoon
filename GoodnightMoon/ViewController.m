@@ -9,10 +9,12 @@
 #import "ViewController.h"
 #import "ImageCollectionViewCell.h"
 
-@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollisionBehaviorDelegate>
 
 @property NSMutableArray *arrayOfMoonImages;
 @property (weak, nonatomic) IBOutlet UIView *shadeView;
+@property NSMutableArray *arrayOfSunImages, *currentImagesArray;
+@property (weak, nonatomic) IBOutlet UICollectionView *collisionView;
 
 // Setup behaviors
 @property (strong, nonatomic) UICollisionBehavior *collisionBehavior;
@@ -24,6 +26,7 @@
 @end
 
 @implementation ViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,6 +40,36 @@
     UIImage *image6 = [UIImage imageNamed:@"moon_6"];
     self.arrayOfMoonImages = [NSMutableArray alloc];
     self.arrayOfMoonImages = [self.arrayOfMoonImages initWithObjects: image1, image2, image3, image4, image5, image6, nil];
+
+    // Create an array of images
+    UIImage *image7 = [UIImage imageNamed:@"sun_1"];
+    UIImage *image8 = [UIImage imageNamed:@"sun_2"];
+    UIImage *image9 = [UIImage imageNamed:@"sun_3"];
+    UIImage *image10 = [UIImage imageNamed:@"sun_4"];
+    UIImage *image11 = [UIImage imageNamed:@"sun_5"];
+    UIImage *image12 = [UIImage imageNamed:@"sun_6"];
+    self.arrayOfSunImages = [NSMutableArray alloc];
+    self.arrayOfSunImages = [self.arrayOfSunImages initWithObjects: image7, image8, image9, image10, image11, image12, nil];
+
+    self.currentImagesArray = self.arrayOfMoonImages;
+}
+
+- (IBAction)onToggleButtonPressed:(UIButton *)sender
+{
+    [self toggleImages];
+}
+
+- (void)toggleImages
+{
+    if([self.currentImagesArray isEqualToArray:self.arrayOfMoonImages])
+    {
+        self.currentImagesArray = self.arrayOfSunImages;
+    }
+    else
+    {
+        self.currentImagesArray = self.arrayOfMoonImages;
+    }
+    [self.collisionView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -54,7 +87,10 @@
     [self.collisionBehavior addBoundaryWithIdentifier:@"bottom"
                                             fromPoint:CGPointMake(0, self.view.frame.size.height)
                                               toPoint:CGPointMake(self.view.frame.size.width, self.view.frame.size.height)];
-
+    NSLog(@"%f", self.shadeView.frame.origin.y);
+    [self.collisionBehavior addBoundaryWithIdentifier:@"top"
+                                            fromPoint:CGPointMake(0, self.shadeView.frame.origin.y - 2)
+                                              toPoint:CGPointMake(self.view.frame.size.width, self.shadeView.frame.origin.y - 2)];
 
     [self.gravityBehavior setGravityDirection:CGVectorMake(0, 0)];  // no gravity when the view loads
 
@@ -65,6 +101,8 @@
     [self.dynamicAnimator addBehavior:self.gravityBehavior];
     [self.dynamicAnimator addBehavior:self.pushBehavior];
     [self.dynamicAnimator addBehavior:self.dynamicItemBehavior];
+
+    self.collisionBehavior.collisionDelegate = self;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -73,7 +111,7 @@
     ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"moonCellID" forIndexPath:indexPath];
 
     // Change the image to the image in the array of images
-    cell.imageView.image = [self.arrayOfMoonImages objectAtIndex:indexPath.row];
+    cell.imageView.image = [self.currentImagesArray objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -123,6 +161,21 @@
 {
     // returns the number of items inside the collection view
     return 6;
+}
+
+- (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
+{
+//    NSLog(@"%@ behavior \n %@ item \n %@ identifier \n %f point", behavior.boundaryIdentifiers, item, identifier, p.x);
+    NSString *identifierString = (NSString *)identifier;
+    NSLog(@"again");
+    if ([identifierString isEqualToString:@"top"]) {
+        self.currentImagesArray = self.arrayOfMoonImages;
+    }
+    else if ([identifierString isEqualToString:@"bottom"])
+    {
+        self.currentImagesArray = self.arrayOfSunImages;
+    }
+    [self.collisionView reloadData];
 }
 
 @end

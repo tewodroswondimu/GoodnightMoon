@@ -49,6 +49,15 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="pWq-CE-qNO"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oyk-1c-gmx">
+                                <rect key="frame" x="137" y="518" width="46" height="30"/>
+                                <state key="normal" title="Toggle">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onToggleButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="uCF-jZ-wwk"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Fz-fg-prZ">
                                 <rect key="frame" x="0.0" y="-546" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.66294640569999996" green="1" blue="0.44061045580000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -71,6 +80,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="collisionView" destination="ebn-SZ-4ed" id="ay8-13-Y2J"/>
                         <outlet property="shadeView" destination="5Fz-fg-prZ" id="FpV-W3-xGY"/>
                     </connections>
                 </viewController>
