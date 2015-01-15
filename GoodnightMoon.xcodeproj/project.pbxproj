@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1885A4AA1A6847C000C32D05 /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1885A4A91A6847C000C32D05 /* ImageCollectionViewCell.m */; };
 		18B534501A683F7800E100C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5344F1A683F7800E100C7 /* main.m */; };
 		18B534531A683F7800E100C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B534521A683F7800E100C7 /* AppDelegate.m */; };
 		18B534561A683F7800E100C7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B534551A683F7800E100C7 /* ViewController.m */; };
@@ -27,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1885A4A81A6847C000C32D05 /* ImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCollectionViewCell.h; sourceTree = "<group>"; };
+		1885A4A91A6847C000C32D05 /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
 		18B5344A1A683F7800E100C7 /* GoodnightMoon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodnightMoon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B5344E1A683F7800E100C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18B5344F1A683F7800E100C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -85,6 +88,8 @@
 				18B534521A683F7800E100C7 /* AppDelegate.m */,
 				18B534541A683F7800E100C7 /* ViewController.h */,
 				18B534551A683F7800E100C7 /* ViewController.m */,
+				1885A4A81A6847C000C32D05 /* ImageCollectionViewCell.h */,
+				1885A4A91A6847C000C32D05 /* ImageCollectionViewCell.m */,
 				18B534571A683F7800E100C7 /* Main.storyboard */,
 				18B5345A1A683F7800E100C7 /* Images.xcassets */,
 				18B5345C1A683F7800E100C7 /* LaunchScreen.xib */,
@@ -221,6 +226,7 @@
 			files = (
 				18B534561A683F7800E100C7 /* ViewController.m in Sources */,
 				18B534531A683F7800E100C7 /* AppDelegate.m in Sources */,
+				1885A4AA1A6847C000C32D05 /* ImageCollectionViewCell.m in Sources */,
 				18B534501A683F7800E100C7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +418,7 @@
 				18B5346F1A683F7800E100C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18B534701A683F7800E100C7 /* Build configuration list for PBXNativeTarget "GoodnightMoonTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +427,7 @@
 				18B534721A683F7800E100C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
